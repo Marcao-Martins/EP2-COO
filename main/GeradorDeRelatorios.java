@@ -90,7 +90,8 @@ public class GeradorDeRelatorios {
 
 	            String cor = null; // definir a cor do produto
 
-	            out.print(Produto.formataProdutoParaImpressao(p, format_flags, cor));
+	            Produto.formataProdutoParaImpressao(produtos, format_flags, cor);
+	            out.print(p);
 
 	            out.println("</li>");
 	            count++;

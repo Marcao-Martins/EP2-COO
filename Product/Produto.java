@@ -56,21 +56,20 @@ public interface Produto {
 		}};
 		return p;
 	}
-	public static String formataProdutoParaImpressao(Produto produto, int format_flags, String cor) {
-        String html = "<span style='";
+	public static void formataProdutoParaImpressao(List<Produto> produtos, int format_flags, String cor) {
         if ((format_flags & GeradorDeRelatorios.FORMATO_NEGRITO) > 0) {
-            html += "font-weight: bold;";
+            Produto.carregaProdutosNegrito(produtos);
         }
         if ((format_flags & GeradorDeRelatorios.FORMATO_ITALICO) > 0) {
-            html += "font-style: italic;";
+            Produto.carregaProdutosItalicos(produtos);
+        }
+        if ((format_flags & GeradorDeRelatorios.FORMATO_ITALICO) > 0&GeradorDeRelatorios.FORMATO_NEGRITO > 0) {
+            Produto.carregaProdutosOsDois(produtos);
         }
         if (cor != null) {
-            html += "color: " + cor + ";";
+            Produto.carregaProdutosColoridos(produtos, cor);
         }
-        html += "'>";
-        html += produto.formataParaImpressao();
-        html += "</span>";
-        return html;
+  
     }
 	public static List<Produto> carregaProdutosOsDois(List<Produto> produtos) {
 		produtos = carregaProdutosNegrito(produtos);
