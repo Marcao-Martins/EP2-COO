@@ -11,6 +11,12 @@ public interface CriterioOrdenacao {
                 return new Preco();
             case "estoque_c":
                 return new Estoque();
+            case "descricao_d": // Novo critério para ordenação decrescente por descrição
+                return new DescricaoDecrescente();
+            case "preco_d": // Novo critério para ordenação decrescente por preço
+                return new PrecoDecrescente();
+            case "estoque_d": // Novo critério para ordenação decrescente por estoque
+                return new EstoqueDecrescente();
             default:
                 throw new IllegalArgumentException("Criterio de ordenacao invalido!");
         }

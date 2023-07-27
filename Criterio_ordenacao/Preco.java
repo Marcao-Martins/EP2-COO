@@ -1,4 +1,4 @@
-package Criterio_ordenacao;
+ package Criterio_ordenacao;
 import Product.Produto;
 
 public class Preco implements CriterioOrdenacao{
