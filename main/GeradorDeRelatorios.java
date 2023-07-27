@@ -1,3 +1,4 @@
+package main;
 import java.io.PrintWriter;
 import java.io.IOException;
 import java.util.*;
@@ -80,48 +81,25 @@ public class GeradorDeRelatorios {
 
 		int count = 0;
 
-		for(int i = 0; i < produtos.size(); i++){
+		for (int i = 0; i < produtos.size(); i++) {
+	        Produto p = produtos.get(i);
+	        boolean selecionado = criterioFiltro.filtrar(p, argFiltro);
 
-			Produto p = produtos.get(i);
-			boolean selecionado = criterioFiltro.filtrar(p, argFiltro);
+	        if (selecionado) {
+	            out.print("<li>");
 
-			if(selecionado){
+	            String cor = null; // definir a cor do produto
 
-				out.print("<li>");
+	            out.print(Produto.formataProdutoParaImpressao(p, format_flags, cor));
 
-				if((format_flags & FORMATO_ITALICO) > 0){
+	            out.println("</li>");
+	            count++;
 
-					out.print("<span style=\"font-style:italic\">");
-				}
-
-				if((format_flags & FORMATO_NEGRITO) > 0){
-
-					out.print("<span style=\"font-weight:bold\">");
-				} 
-			
-				out.print(p.formataParaImpressao());
-
-				if((format_flags & FORMATO_NEGRITO) > 0){
-
-					out.print("</span>");
-				} 
-
-				if((format_flags & FORMATO_ITALICO) > 0){
-
-					out.print("</span>");
-				}
-
-				out.println("</li>");
-				count++;
-			}
-		}
-
-		out.println("</ul>");
-		out.println(count + " produtos listados, de um total de " + produtos.size() + ".");
-		out.println("</body>");
-		out.println("</html>");
-
-		out.close();
+	    }
+	        else {
+	        	
+	        }
+	}
 	}
 
 	public static void main(String [] args) {

@@ -1,5 +1,5 @@
 package Product;
-
+import main.GeradorDeRelatorios;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,7 +56,22 @@ public interface Produto {
 		}};
 		return p;
 	}
-
+	public static String formataProdutoParaImpressao(Produto produto, int format_flags, String cor) {
+        String html = "<span style='";
+        if ((format_flags & GeradorDeRelatorios.FORMATO_NEGRITO) > 0) {
+            html += "font-weight: bold;";
+        }
+        if ((format_flags & GeradorDeRelatorios.FORMATO_ITALICO) > 0) {
+            html += "font-style: italic;";
+        }
+        if (cor != null) {
+            html += "color: " + cor + ";";
+        }
+        html += "'>";
+        html += produto.formataParaImpressao();
+        html += "</span>";
+        return html;
+    }
 	public static List<Produto> carregaProdutosOsDois(List<Produto> produtos) {
 		produtos = carregaProdutosNegrito(produtos);
 		produtos = carregaProdutosItalicos(produtos);

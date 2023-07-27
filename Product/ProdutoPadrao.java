@@ -75,7 +75,7 @@ public class ProdutoPadrao implements Produto {
 	}
 
 
-	// metodo que devolve uma String que representa o produto, a ser usada na geração dos relatorios.
+	// Metodo que devolve uma String que representa o produto, a utilizado na geração dos relatorios.
 
 	public String formataParaImpressao(){
 
